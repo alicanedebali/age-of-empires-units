@@ -9,7 +9,7 @@ import type { RootState } from '../middleware/config.store';
 import { type CostInterface, type UnitRawInterface } from '../../types';
 
 export interface UnitState {
-  units: UnitRawInterface[];
+  unitsData: UnitRawInterface[];
   filteredUnits: UnitRawInterface[];
   selectedUnit?: UnitRawInterface;
   loading: boolean;
@@ -17,7 +17,7 @@ export interface UnitState {
 }
 
 const initialState: UnitState = {
-  units: [],
+  unitsData: [],
   filteredUnits: [],
   selectedUnit: undefined,
   loading: false,
@@ -33,7 +33,7 @@ export const unitsSlice = createSlice({
       state.loading = true;
     },
     fetchAllSucceeded(state, action: PayloadAction<UnitRawInterface[]>) {
-      state.units = action.payload;
+      state.unitsData = action.payload;
       state.filteredUnits = action.payload;
       state.loading = false;
     },
@@ -43,7 +43,7 @@ export const unitsSlice = createSlice({
     },
 
     filteredUnits(state, action: PayloadAction<CostInterface>) {
-      const filtered = state.units.filter(
+      const filtered = state.unitsData.filter(
         (unit: UnitRawInterface) =>
           (!action.payload.Wood || unit.cost.Wood <= action.payload.Wood) &&
           (!action.payload.Gold || unit.cost.Gold <= action.payload.Gold) &&
@@ -53,7 +53,7 @@ export const unitsSlice = createSlice({
       state.loading = false;
     },
     selectedUnits(state, action: PayloadAction<number | undefined>) {
-      const selected = state.units.find(
+      const selected = state.unitsData.find(
         (unit: UnitRawInterface) => unit.id === action.payload,
       );
       state.selectedUnit = selected;
@@ -73,7 +73,7 @@ export const unitsActions = {
 };
 
 // Selectors
-export const selectUnits = (state: RootState): UnitRawInterface[] => {
+export const selectUnits = (state: RootState): UnitState => {
   return state.units;
 };
 
