@@ -16,6 +16,7 @@ export const Main = () => {
   return (
     <div className="container">
       Welcome to main page
+      <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <div className={'spinner'}></div>
     </div>
   );
