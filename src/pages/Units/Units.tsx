@@ -1,11 +1,13 @@
-import { Table } from '../components';
-import { useAppDispatch, useAppSelector } from '../store/middleware/hooks';
-import { unitsActions, selectUnits } from '../store/units/units.slice';
+import { Table, PageTitle } from '../../components';
+import { useAppDispatch, useAppSelector } from '../../store/middleware/hooks';
+import { unitsActions, selectUnits } from '../../store/units/units.slice';
 import { useEffect, useState } from 'react';
-import { UnitRawInterface, UnitsFilterInterface } from '../utils';
-import { PageTitle } from '../components/PageTitle';
+import { UnitRawInterface } from '../../utils';
+import { UnitsFilter } from './components/UnitsFilter';
+import { useNavigate } from 'react-router-dom';
 
 export const UnitsPage = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { filteredUnits } = useAppSelector(selectUnits);
 
@@ -19,13 +21,10 @@ export const UnitsPage = () => {
     setUnitList(filteredUnits);
   }, [filteredUnits]);
 
-  // active when filter complate
-  // const unitsFilter = (filter: UnitsFilterInterface) => {
-  //   dispatch(unitsActions.filteredUnits(filter));
-  // };
   return (
-    <div>
+    <div className="grid gap-y-4 ">
       <PageTitle title={'Units Page'} />
+      <UnitsFilter />
       <Table
         data={unitList || []}
         columns={[
@@ -34,6 +33,9 @@ export const UnitsPage = () => {
           { key: 'age', title: 'Age' },
           { key: 'cost', title: 'Cost' },
         ]}
+        clickHandler={(e) => {
+          navigate('/units/' + e.id);
+        }}
       />
     </div>
   );

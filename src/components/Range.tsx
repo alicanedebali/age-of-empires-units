@@ -2,16 +2,20 @@ import { useEffect, useState } from 'react';
 import { RangeInterface, useDebounce } from '../utils';
 
 export const Range = (props: RangeInterface) => {
-  const [value, setValue] = useState<number>(0);
+  const [value, setValue] = useState<number>(100);
   const [isActive, setIsActive] = useState<boolean>(false);
 
   useEffect(() => {
+    setValue(props.rangeLimit);
+  }, [props.rangeLimit]);
+
+  useEffect(() => {
     onChangeDebounced(value);
-  }, [value]);
+  }, [value, isActive]);
 
   const _onChangeDebounced = async (range: number) => {
     props.clickHandler &&
-      props.clickHandler({ key: props.title, value: range });
+      props.clickHandler({ isActive: isActive, value: range });
   };
 
   const onChangeDebounced = useDebounce(_onChangeDebounced, 400);
@@ -38,7 +42,7 @@ export const Range = (props: RangeInterface) => {
         type="range"
         value={value}
         min="0"
-        max="200"
+        max={props.rangeLimit}
         className="h-1 flex-1 bg-gray-200 rounded-lg appearance-none cursor-pointer range-sm dark:bg-gray-700"
         onChange={(e) => {
           setValue(parseInt(e.target.value));
@@ -46,7 +50,7 @@ export const Range = (props: RangeInterface) => {
         disabled={!isActive}
       />
 
-      <label className="ml-2 text-sm flex-none font-medium text-gray-900 dark:text-white">
+      <label className="w-6 ml-2 text-sm text-center flex-none font-medium text-gray-900 dark:text-white">
         {isActive ? value : '-'}
       </label>
     </div>

@@ -25,7 +25,7 @@ export const TableRow = memo(function TableRow({
   };
   return (
     <tr
-      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 cursor-pointer hover:bg-gray-200"
       onClick={() => clickHandler && clickHandler(row)}
     >
       {columns.map((column) => (
