@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { TableRowInterface } from '../../types';
+import { TableRowInterface } from '../../utils';
 
 export const TableRow = memo(function TableRow({
   columns,

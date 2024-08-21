@@ -1,4 +1,4 @@
-import { UnitRawInterface } from '../../types';
+import { UnitRawInterface } from '../../utils';
 
 export async function unitsService(): Promise<UnitRawInterface[] | null> {
   return fetch('data/age-of-empires-units.json', {

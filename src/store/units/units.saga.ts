@@ -2,7 +2,7 @@ import { type SagaIterator } from '@redux-saga/core';
 import { call, put, takeEvery } from 'redux-saga/effects';
 
 import { unitsService } from '../services';
-import { type UnitRawInterface } from '../../types';
+import { type UnitRawInterface } from '../../utils';
 import { unitsActions } from './units.slice';
 
 // Worker Sagas

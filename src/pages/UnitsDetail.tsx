@@ -1,3 +1,4 @@
+import { PageTitle } from '../components';
 import { useAppDispatch, useAppSelector } from '../store/middleware/hooks';
 import { unitsActions, selectUnits } from '../store/units/units.slice';
 import { useEffect } from 'react';
@@ -10,9 +11,7 @@ export const UnitDetailPage = () => {
   }, [dispatch]);
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">
-        Welcome to units detail page
-      </h1>
+      <PageTitle title="units detail page" />
     </div>
   );
 };

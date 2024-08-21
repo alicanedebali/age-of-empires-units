@@ -6,7 +6,7 @@ import {
 } from '@reduxjs/toolkit';
 
 import type { RootState } from '../middleware/config.store';
-import { type UnitsFilterInterface, type UnitRawInterface } from '../../types';
+import { type UnitsFilterInterface, type UnitRawInterface } from '../../utils';
 
 export interface UnitState {
   unitsData: UnitRawInterface[];

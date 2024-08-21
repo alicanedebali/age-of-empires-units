@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
-import { ColumnInterface, TableInterface, UnitRawInterface } from '../../types';
+import { ColumnInterface, TableInterface, UnitRawInterface } from '../../utils';
 import { TableHeader } from './TableHeader';
 import { TableRow } from './TableRow';
 import { NoData } from '../NoData';
