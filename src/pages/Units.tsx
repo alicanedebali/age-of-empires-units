@@ -2,7 +2,8 @@ import { Table } from '../components';
 import { useAppDispatch, useAppSelector } from '../store/middleware/hooks';
 import { unitsActions, selectUnits } from '../store/units/units.slice';
 import { useEffect, useState } from 'react';
-import { UnitRawInterface, UnitsFilterInterface } from '../types';
+import { UnitRawInterface, UnitsFilterInterface } from '../utils';
+import { PageTitle } from '../components/PageTitle';
 
 export const UnitsPage = () => {
   const dispatch = useAppDispatch();
@@ -24,7 +25,7 @@ export const UnitsPage = () => {
   // };
   return (
     <div>
-      <h1 className="text-3xl font-bold underline"> Welcome to units page</h1>
+      <PageTitle title={'Units Page'} />
       <Table
         data={unitList || []}
         columns={[

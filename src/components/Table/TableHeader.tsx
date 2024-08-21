@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { ColumnInterface } from '../../types';
+import { ColumnInterface } from '../../utils';
 
 export const TableHeader = memo(function TableHeader({
   columns,

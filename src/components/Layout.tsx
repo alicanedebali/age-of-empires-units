@@ -55,8 +55,8 @@ export const Layout = (props: React.PropsWithChildren) => {
           </div>
         </nav>
       </header>
-      <div className="layout-content flex justify-center w-full xl:w-[1200px] overflow-y-auto">
-        {props?.children}
+      <div className="flex justify-center ">
+        <div className="w-full lg:w-[1000px]">{props?.children}</div>
       </div>
     </div>
   );
