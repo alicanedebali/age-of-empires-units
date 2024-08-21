@@ -21,7 +21,7 @@ export const Table = memo(function Table(
     }
   }, [props]);
   return (
-    <div className="relative overflow-x-auto">
+    <div className="relative overflow-x-auto mb-5">
       {props.data?.length ? (
         <table className="border-collapse border border-slate-400 w-full text-sm text-center text-gray-500 dark:text-gray-400">
           <TableHeader columns={columns} />
