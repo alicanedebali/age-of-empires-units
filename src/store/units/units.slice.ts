@@ -45,17 +45,14 @@ export const unitsSlice = createSlice({
     filteredUnits(state, action: PayloadAction<UnitsFilterInterface>) {
       const filtered = state.unitsData.filter(
         (unit: UnitRawInterface) =>
-          (!action.payload.Wood || unit.cost.Wood <= action.payload.Wood) &&
-          (!action.payload.Gold || unit.cost.Gold <= action.payload.Gold) &&
-          (!action.payload.Food || unit.cost.Food <= action.payload.Food) &&
+          (action.payload.Wood == undefined ||
+            unit.cost.Wood <= action.payload.Wood) &&
+          (action.payload.Gold == undefined ||
+            unit.cost.Gold <= action.payload.Gold) &&
+          (action.payload.Food == undefined ||
+            unit.cost.Food <= action.payload.Food) &&
           (!action.payload.age || unit.age === action.payload.age),
       );
-      console.log(
-        action.payload.age,
-        state.unitsData[0].age,
-        state.unitsData[0].age === action.payload.age,
-      );
-
       state.filteredUnits = filtered;
       state.loading = false;
     },
