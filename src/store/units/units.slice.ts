@@ -6,7 +6,7 @@ import {
 } from '@reduxjs/toolkit';
 
 import type { RootState } from '../middleware/config.store';
-import { type CostInterface, type UnitRawInterface } from '../../types';
+import { type UnitsFilterInterface, type UnitRawInterface } from '../../types';
 
 export interface UnitState {
   unitsData: UnitRawInterface[];
@@ -42,13 +42,20 @@ export const unitsSlice = createSlice({
       state.loading = false;
     },
 
-    filteredUnits(state, action: PayloadAction<CostInterface>) {
+    filteredUnits(state, action: PayloadAction<UnitsFilterInterface>) {
       const filtered = state.unitsData.filter(
         (unit: UnitRawInterface) =>
           (!action.payload.Wood || unit.cost.Wood <= action.payload.Wood) &&
           (!action.payload.Gold || unit.cost.Gold <= action.payload.Gold) &&
-          (!action.payload.Food || unit.cost.Food <= action.payload.Food),
+          (!action.payload.Food || unit.cost.Food <= action.payload.Food) &&
+          (!action.payload.age || unit.age === action.payload.age),
       );
+      console.log(
+        action.payload.age,
+        state.unitsData[0].age,
+        state.unitsData[0].age === action.payload.age,
+      );
+
       state.filteredUnits = filtered;
       state.loading = false;
     },

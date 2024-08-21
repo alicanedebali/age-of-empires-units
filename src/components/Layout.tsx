@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-export const Layout = (props: any) => {
+export const Layout = (props: React.PropsWithChildren) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [activeClasses] = useState(
@@ -55,7 +55,9 @@ export const Layout = (props: any) => {
           </div>
         </nav>
       </header>
-      {props.children}
+      <div className="layout-content flex justify-center w-full xl:w-[1200px] overflow-y-auto">
+        {props?.children}
+      </div>
     </div>
   );
 };
