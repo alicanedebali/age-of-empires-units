@@ -25,7 +25,7 @@ export const UnitsPage = () => {
     <div className="grid gap-y-4 ">
       <PageTitle title={'Units Page'} />
       <UnitsFilter />
-      <Table
+      <Table<UnitRawInterface>
         data={unitList || []}
         columns={[
           { key: 'id', title: 'Id' },
