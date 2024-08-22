@@ -17,7 +17,7 @@ export const Layout = (props: React.PropsWithChildren) => {
   };
   return (
     <div className="">
-      <header>
+      <header className="sticky top-0 z-50">
         <nav className="bg-gray-800 border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-white">
           <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <div className="flex items-center justify-between w-full">

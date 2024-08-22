@@ -32,7 +32,7 @@ export const Range = (props: RangeInterface) => {
 
       <label
         htmlFor="small-range"
-        className="text-md flex-none font-medium text-gray-900 dark:text-white"
+        className="min-w-[60px] text-md flex-none font-medium text-gray-900 dark:text-white"
       >
         {props.title}
       </label>
