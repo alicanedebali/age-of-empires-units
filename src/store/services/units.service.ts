@@ -1,7 +1,7 @@
 import { UnitRawInterface } from '../../utils';
 
 export async function unitsService(): Promise<UnitRawInterface[] | null> {
-  return fetch('data/age-of-empires-units.json', {
+  return fetch('/data/age-of-empires-units.json', {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',

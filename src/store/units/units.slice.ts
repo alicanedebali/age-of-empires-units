@@ -58,7 +58,7 @@ export const unitsSlice = createSlice({
     },
     selectedUnits(state, action: PayloadAction<number | undefined>) {
       const selected = state.unitsData.find(
-        (unit: UnitRawInterface) => unit.id === action.payload,
+        (unit: UnitRawInterface) => unit.id == action.payload,
       );
       state.selectedUnit = selected;
       state.loading = false;

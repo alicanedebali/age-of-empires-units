@@ -41,21 +41,12 @@ export const Layout = (props: React.PropsWithChildren) => {
                 >
                   Units
                 </a>
-                <a
-                  href="#"
-                  className={checkActiveButton('/units/1')}
-                  onClick={() =>
-                    location.pathname !== '/units/1' && navigate('/units/1')
-                  }
-                >
-                  Units detail
-                </a>
               </div>
             </div>
           </div>
         </nav>
       </header>
-      <div className="flex justify-center ">
+      <div className="flex justify-center px-5 lg:px-0 pb-4">
         <div className="w-full lg:w-[1000px]">{props?.children}</div>
       </div>
     </div>
