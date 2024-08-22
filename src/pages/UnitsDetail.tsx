@@ -60,7 +60,6 @@ export const UnitDetailPage = () => {
       setUnitList(unitListData);
     }
   }, [selectedUnit]);
-  console.log(selectedUnit);
 
   return (
     <div className="flex flex-col items-center gap-y-4">
