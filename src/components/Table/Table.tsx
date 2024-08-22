@@ -1,22 +1,20 @@
-import React, { memo, useEffect, useState } from 'react';
-import { ColumnInterface, TableInterface, UnitRawInterface } from '../../utils';
+import React, { useEffect, useState } from 'react';
+import { ColumnInterface, TableInterface } from '../../utils';
 import { TableHeader } from './TableHeader';
 import { TableRow } from './TableRow';
 import { NoData } from '../NoData';
 
-export const Table = memo(function Table(
-  props: TableInterface<UnitRawInterface>,
-) {
-  const [columns, setColumns] = useState<ColumnInterface[]>([]);
+export function Table<T>(props: TableInterface<T>) {
+  const [columns, setColumns] = useState<ColumnInterface<T>[]>([]);
 
   useEffect(() => {
     if (props.columns) {
       setColumns(props.columns);
     } else if (props.data.length) {
       setColumns(
-        Object.keys(props.data[0]).map((key) => {
+        Object.keys({ ...props.data[0] } as keyof T).map((key) => {
           return { key: key, title: key.toUpperCase() };
-        }),
+        }) as ColumnInterface<T>[],
       );
     }
   }, [props]);
@@ -27,8 +25,8 @@ export const Table = memo(function Table(
           <TableHeader columns={columns} />
           <tbody>
             {props.data.map((item) => (
-              <React.Fragment key={item.id.toString()}>
-                <TableRow
+              <React.Fragment key={JSON.stringify(item)}>
+                <TableRow<T>
                   row={item}
                   columns={columns}
                   clickHandler={(e) =>
@@ -44,4 +42,4 @@ export const Table = memo(function Table(
       )}
     </div>
   );
-});
+}

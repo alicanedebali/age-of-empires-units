@@ -1,25 +1,21 @@
-import { memo } from 'react';
 import { TableRowInterface } from '../../utils';
 
-export const TableRow = memo(function TableRow({
+export function TableRow<T>({
   columns,
   row,
   clickHandler,
-}: TableRowInterface) {
-  const mapObjectAndValues = (
-    obj: { [key: string]: React.ReactNode } | any,
-  ) => {
-    if (typeof obj !== 'object' || obj?.length !== undefined) {
+}: TableRowInterface<T>) {
+  const mapObjectAndValues = (obj: React.ReactNode | T) => {
+    if (typeof obj !== 'object') {
       return obj;
     } else {
       const result = [];
       for (const key in obj) {
         if (Object.prototype.hasOwnProperty.call(obj, key)) {
-          const element = obj[key];
+          const element = obj[key as never];
           result.push(`${key}: ${element}`);
         }
       }
-
       return result.join(', ');
     }
   };
@@ -30,12 +26,12 @@ export const TableRow = memo(function TableRow({
     >
       {columns.map((column) => (
         <td
-          key={column.key + column.title}
+          key={column.key.toString() + column.title}
           className="border border-slate-300 px-6 py-4"
         >
-          {mapObjectAndValues(row[column.key])}
+          {`${mapObjectAndValues(row[column.key] as React.ReactNode | T)}`}
         </td>
       ))}
     </tr>
   );
-});
+}

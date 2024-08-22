@@ -1,4 +1,4 @@
-export interface ColumnInterface {
+export interface ColumnInterface<T> {
   title: string;
-  key: string;
+  key: keyof T;
 }
